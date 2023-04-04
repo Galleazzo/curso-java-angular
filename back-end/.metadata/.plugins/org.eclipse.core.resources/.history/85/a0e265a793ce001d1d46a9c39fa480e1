@@ -1,0 +1,5 @@
+package br.com.paulo.clientes.model.repository;
+
+public interface ClienteRepo {
+
+}

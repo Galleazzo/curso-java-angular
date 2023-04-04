@@ -1,0 +1,7 @@
+package br.com.paulo.clientes.model.rest;
+
+import org.springframework.web.bind.annotation.RestController;
+
+public class ClienteController {
+
+}

@@ -1,0 +1,8 @@
+package br.com.paulo.vendas;
+
+import org.springframework.context.annotation.*;
+
+@Configuration
+public class Configuration {
+
+}
