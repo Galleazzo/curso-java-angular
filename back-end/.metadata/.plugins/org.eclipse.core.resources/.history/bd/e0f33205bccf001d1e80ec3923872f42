@@ -1,7 +1,0 @@
-package br.com.paulo.clientes.model.rest;
-
-
-@RestCONTR
-public class ClienteController {
-
-}

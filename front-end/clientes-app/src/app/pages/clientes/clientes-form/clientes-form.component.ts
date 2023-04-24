@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Clientes } from '../clientes';
 
 @Component({
   selector: 'app-clientes-form',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class ClientesFormComponent {
 
+  cliente: Clientes;
+
+  constructor(){
+    this.cliente = new Clientes;
+  }
+  ngOnInit(){}
+
+  onSubmit(){
+    console.log(this.cliente);
+  }
 }

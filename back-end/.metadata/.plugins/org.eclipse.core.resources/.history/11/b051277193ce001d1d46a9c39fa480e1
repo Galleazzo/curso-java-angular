@@ -1,5 +1,0 @@
-package br.com.paulo.clientes.model.repository;
-
-public class ClienteRepo {
-
-}
