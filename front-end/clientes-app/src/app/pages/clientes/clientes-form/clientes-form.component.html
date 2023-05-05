@@ -1,10 +1,17 @@
 <h1 class="mt-4">Formulario de cliente</h1>
+<br>
+<button type="button" class="btn btn-primary"><a class="btnLink" routerLink="/allClients">Voltar</a></button>
+<br>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Form</li>
 </ol>
 
+<div class="alert alert-success" role="alert" *ngIf="clienteSalvo == true">
+    Cliente salvo com sucesso!
+</div>
+
 <div class="container">
-    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #clienteForm="ngForm" (ngSubmit)="saveClient()">
         <div class="row">
             <div class="col-md-6">
                 <label>ID:</label>

@@ -1,8 +1,11 @@
 package br.com.paulo.clientes.rest;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/clientes")
+@CrossOrigin("http://localhost:4200")
 public class ClienteController {
 
 	
@@ -37,9 +41,9 @@ public class ClienteController {
 	}
 	
 	@RequestMapping("/deleteCliente")
-	public String deletarPorId(@RequestParam Integer id) {
+	public List<Cliente> deletarPorId(@RequestParam Integer id) {
 		clienteRepo.deleteById(id);
-		return "Cliente deletado com sucesso!!";
+		return clienteRepo.findAll();
 	}
 	
 	@RequestMapping("/updateCliente")
@@ -49,5 +53,10 @@ public class ClienteController {
 				return clienteRepo.save(clienteAtualizado);
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 		
+	}
+	
+	@RequestMapping("/allClients")
+	public List<Cliente> todos() {
+		return clienteRepo.findAll();
 	}
 }

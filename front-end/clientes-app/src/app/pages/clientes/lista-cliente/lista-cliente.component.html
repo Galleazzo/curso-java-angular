@@ -1,0 +1,37 @@
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 class="mt-4">Todos Clientes</h1>
+
+    <a type="button" class="btn btn-primary"><a class="btnLink" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts" routerLink="/clientesForm">Novo Cliente</a></a>
+</div>
+<ol class="breadcrumb mb-4" style="display: flex; justify-content: space-between; align-items: center;">
+    <li class="breadcrumb-item active">Lista:</li>
+    
+</ol>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Data de Cadastro</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of clientes">
+                    <td>{{cliente.id}}</td>
+                    <td>{{cliente.nome}}</td>
+                    <td>{{cliente.cpf}}</td>
+                    <td>{{cliente.dataCadastro}}</td>
+                    <td><a type="button" class="btn btn-warning" (click)="deleteCliente(cliente.id)">
+                        Apagar 
+                    </a></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
