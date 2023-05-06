@@ -20,8 +20,16 @@ export class ClientesService {
     return this.http.get<Clientes[]>(this.baseUrl+`/allClients`)
   }
 
-  deleteById(id: number) : Observable<Clientes[]>{
-    return this.http.get<Clientes[]>(this.baseUrl + `/deleteCliente?id=` + id )
+  deleteById(cliente : Clientes) : Observable<any>{
+    return this.http.delete<any>(this.baseUrl + `/deleteCliente?id=` + cliente.id )
+  }
+
+  getClientById(id : number) : Observable<Clientes> {
+    return this.http.get<any>(this.baseUrl + `/findCliente/` + id)
+  }
+
+  updateClient(cliente : Clientes) : Observable<Clientes>{
+    return this.http.put<any>(this.baseUrl + `/updateCliente?id=` + cliente.id, cliente);
   }
 
 }

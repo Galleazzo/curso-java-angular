@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { Clientes } from '../clientes';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lista-cliente',
@@ -10,6 +11,7 @@ import { Clientes } from '../clientes';
 export class ListaClienteComponent {
 
   clientes : Clientes[] = [];
+  clienteSelecionado!: Clientes;
 
   constructor(private clienteservice: ClientesService){
 
@@ -29,9 +31,13 @@ export class ListaClienteComponent {
     this.clientes = [];
   }
 
-  deleteCliente(id: number){
-    this.clienteservice.deleteById(id).subscribe(result => {
-      this.clientes = result;
+  preparaDelecao(cliente : Clientes){
+    this.clienteSelecionado = cliente;
+  }
+
+  deleteCliente(){
+    this.clienteservice.deleteById(this.clienteSelecionado).subscribe(result => {
+      this.ngOnInit();
     })
   }
 

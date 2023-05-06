@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Clientes } from '../clientes';
 import { ClientesService } from 'src/app/services/clientes.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-clientes-form',
@@ -12,16 +12,37 @@ export class ClientesFormComponent {
 
   cliente: Clientes = new Clientes;
   clienteSalvo : boolean = false;
+  
 
-  constructor( private clienteService : ClientesService, private router : Router){
+  idClient! : number;
+
+  constructor( private clienteService : ClientesService, private router : Router, private activatedRoute : ActivatedRoute){
     
   }
-  ngOnInit(){}
+  ngOnInit(){
+    this.idClient = this.activatedRoute.snapshot.params['id'];
+    this.editForm();
+  }
 
   saveClient(){
     this.clienteService.salvarCliente(this.cliente).subscribe( response  => {
       this.clienteSalvo = true;
       console.log(response);
+    })
+    setTimeout(() => {
+      this.router.navigate(['/allClients']);
+    }, 1000);
+  }
+
+  editForm(){
+    this.clienteService.getClientById(this.idClient).subscribe( result =>  {
+      this.cliente = result;
+    })
+  }
+
+  editClient(cliente : Clientes){
+    this.clienteService.updateClient(cliente).subscribe(result => {
+      this.clienteSalvo = true;
     })
     setTimeout(() => {
       this.router.navigate(['/allClients']);

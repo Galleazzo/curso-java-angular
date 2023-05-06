@@ -1,17 +1,17 @@
 <h1 class="mt-4">Formulario de cliente</h1>
 <br>
-<button type="button" class="btn btn-primary"><a class="btnLink" routerLink="/allClients">Voltar</a></button>
+
 <br>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Form</li>
+    <li class="breadcrumb-item active">{{cliente.id ? 'Edição' : 'Cadastro'}}</li>
 </ol>
 
 <div class="alert alert-success" role="alert" *ngIf="clienteSalvo == true">
-    Cliente salvo com sucesso!
+    Cliente salvo/editado com sucesso!
 </div>
 
 <div class="container">
-    <form #clienteForm="ngForm" (ngSubmit)="saveClient()">
+    <form #clienteForm="ngForm" >
         <div class="row">
             <div class="col-md-6">
                 <label>ID:</label>
@@ -30,13 +30,16 @@
                 <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="cpf"> 
             </div>
         </div>
-
+        <br>
         <div class="row">
-            <div class="col-md-2">
-                <br>
-                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Salvar</button>
-            </div>
+            <div class="col-md-3">
 
+                <button type="submit" class="btn btn-success" *ngIf="!cliente.id" (click)="saveClient()"><i class="fa fa-save"></i>Salvar</button>
+          
+                <button type="submit" class="btn btn-warning" *ngIf="cliente.id" (click)="editClient(cliente)"><i class="fa fa-save"></i>Editar</button>
+        
+                <a type="button" class="btn btn-primary" routerLink="/allClients" style="margin-left: 20px;">Voltar</a>
+            </div>    
         </div>
     </form>
 </div>
